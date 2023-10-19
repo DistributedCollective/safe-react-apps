@@ -1,6 +1,7 @@
 {
   "name": "safe-apps",
   "private": true,
+  "packageManager": "yarn@1.22.19",
   "scripts": {
     "build": "yarn workspaces run build",
     "test": "yarn workspaces run test --watchAll=false",
