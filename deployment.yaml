@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: '1'
+  labels:
+    app: rootstock-safe-apps
+  name: rootstock-safe-apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rootstock-safe-apps
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: rootstock-safe-apps
+    spec:
+      containers:
+        - image: sovryn/rootstock-safe-apps
+          imagePullPolicy: Always
+          envFrom:
+          - secretRef:
+              name: rootstock-safe-apps
+          name: web
+          resources: {}
+          ports:
+          - containerPort: 80
+            protocol: TCP
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rootstock-safe-apps
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-2:768438872063:certificate/9fa02b26-0ee5-4301-bdd6-8474344885ff
+spec:
+  selector:
+    app: rootstock-safe-apps
+  ports:
+    - port: 443
+      targetPort: 80
+  type: LoadBalancer
+---

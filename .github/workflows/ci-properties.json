@@ -1,0 +1,12 @@
+{
+  "app_name": "rootstock-safe-apps",
+  "aws_region": "us-east-2",
+  "k8s_cluster_name": "k8-mainnet",
+  "registry": "docker.io",
+  "image_name": "sovryn/rootstock-safe-apps",
+  "prod_branch": "protofire-prd",
+  "dev_branch": "protofire-stg",
+  "dockerfile_path": "./",
+  "APP_ENV_VARS": {
+  }
+}
