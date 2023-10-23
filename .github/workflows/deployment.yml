@@ -2,7 +2,7 @@ name: CI Template
 
 on:
   push:
-    branches: [ rootstock, rootstock-stg ]
+    branches: [ protofire-prd, protofire-stg ]
   workflow_dispatch:
 
 jobs:
