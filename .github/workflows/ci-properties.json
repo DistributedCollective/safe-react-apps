@@ -8,5 +8,11 @@
   "dev_branch": "protofire-stg",
   "dockerfile_path": "./",
   "APP_ENV_VARS": {
+  },
+  "DEV_ENV_VARS": {
+    "INGRESS_HOSTNAME": "safe-apps.test.sovryn.app"
+  },
+  "PROD_ENV_VARS": {
+    "INGRESS_HOSTNAME": "safe-apps.sovryn.app"
   }
 }
