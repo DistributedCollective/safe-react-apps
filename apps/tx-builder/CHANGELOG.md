@@ -2,6 +2,31 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.16.5](https://github.com/safe-global/safe-react-apps/compare/tx-builder-1.16.4...tx-builder-1.16.5) (2024-01-25)
+
+
+
+## [1.16.5](https://github.com/safe-global/safe-react-apps/compare/tx-builder-1.16.4...tx-builder-1.16.5) (2023-11-29)
+
+
+
+## [1.16.4](https://github.com/safe-global/safe-react-apps/compare/tx-builder-1.16.3...tx-builder-1.16.4) (2023-09-22)
+
+
+
+## [1.16.3](https://github.com/safe-global/safe-react-apps/compare/tx-builder-1.16.2...tx-builder-1.16.3) (2023-08-23)
+
+
+
+## [1.16.2](https://github.com/safe-global/safe-react-apps/compare/tx-builder-1.16.1...tx-builder-1.16.2) (2023-07-20)
+
+
+### Bug Fixes
+
+* **tx-builder:** disable simulation on base ([#741](https://github.com/safe-global/safe-react-apps/issues/741)) ([a1d7a63](https://github.com/safe-global/safe-react-apps/commit/a1d7a6399aad4d1fe144ad470135e4196103ec76))
+
+
+
 ## [1.16.1](https://github.com/safe-global/safe-react-apps/compare/tx-builder-1.16.0...tx-builder-1.16.1) (2023-06-20)
 
 

@@ -24,7 +24,8 @@ const getProviderURL = (chain: string, address: string, urlProvider: PROVIDER): 
     case PROVIDER.GATEWAY:
       return `${getGatewayBaseUrl(chain)}/v1/chains/${chain}/contracts/${address}`
     case PROVIDER.BLOCKSCOUT:
-      return `https://blockscout.com/${chain}/api?module=contract&action=getabi&address=${address}`
+      const baseApi = getBlockscoutBaseURL(chain)
+      return `${baseApi}/api?module=contract&action=getabi&address=${address}`
     case PROVIDER.SCANAPI:
       const scanAPI = getScanAPIBaseURL(chain)
       return `${scanAPI?.link}/api?module=contract&action=getabi&address=${address}&apiKey=${scanAPI?.apiKey}`
@@ -35,6 +36,10 @@ const getProviderURL = (chain: string, address: string, urlProvider: PROVIDER): 
 
 export enum SUPPORTED_CHAINS {
   ACALA = '787',
+  BLAST = '81457',
+  BLAST_TESTNET = '168587773',
+  BOB = '60808',
+  BOB_TESTNET = '111',
   KARURA = '686',
   MANDALA = '595',
   ASTAR = '592',
@@ -49,10 +54,16 @@ export enum SUPPORTED_CHAINS {
   EVMOS_TESTNET = '9000',
   HARMONY = '1666600000',
   HARMONY_TESTNET = '1666700000',
+  FLOW_TESTNET = '545',
   HOLESKY = '17000',
+  IMMUTABLE = '13371',
+  IMMUTABLE_TESTNET = '13473',
   IOTEX = '4689',
   IOTEX_TESTNET = '4690',
+  KROMA = '255',
+  KROMA_SEPOLIA = '2358',
   LINEA = '59144',
+  LINEA_SEPOLIA = '59141',
   LINEA_TESTNET = '59140',
   MANTA_PACIFIC_MAINNET = '169',
   MANTLE = '5000',
@@ -70,6 +81,16 @@ export enum SUPPORTED_CHAINS {
   SCROLL = '534352',
   SCROLL_ALPHA_TESTNET = '534353',
   SCROLL_SEPOLIA_TESTNET = '534351',
+  SEI = '1329',
+  SEI_DEVNET = '713715',
+  TANGIBLE_REAL = '111188',
+  TANGIBLE_UNREAL = '18233',
+  TAIKO = '167000',
+  BOBA = '288',
+  BOBA_BNB = '56288',
+  BOBA_BNB_TESTNET = '9728',
+  BOBA_TESTNET = '28882',
+  TAIKO_HEKLA = '167009',
   TELOS = '40',
   TELOS_TESTNET = '41',
   TENET = '155',
@@ -78,9 +99,21 @@ export enum SUPPORTED_CHAINS {
   THUNDER_CORE_TESTNET = '18',
   VELAS = '106',
   VELAS_TESTNET = '111',
+  ZETACHAIN = '7000',
   ZETACHAIN_TESTNET = '7001',
+  ZILLIQA_EVM = '32769',
+  ZILLIQA_EVM_TESTNET = '33101',
+  ZKLINK_NOVA = '810180',
+  ZKLINK_NOVA_GOERLI = '810182',
   ZKSYNC_ERA = '324',
   ZKSYNC_ERA_TESTNET = '280',
+  CROSS_FI_TESTNET = '4157',
+  WEMIX = '1111',
+  WEMIX_TESTNET = '1112',
+  XAI = '660279',
+  XAI_TESTNET = '37714555429',
+  MORPH_HOLESKY = '2810',
+  MINT = '185',
 }
 
 const getGatewayBaseUrl = (chain: string) => {
@@ -100,6 +133,12 @@ const getGatewayBaseUrl = (chain: string) => {
       return isProdEnv
         ? `https://gateway.safe.astar.network`
         : `https://gateway.staging-safe.astar.network`
+    case SUPPORTED_CHAINS.BLAST:
+    case SUPPORTED_CHAINS.BLAST_TESTNET:
+      return isProdEnv ? `https://gateway.blast-safe.io` : `https://gateway.blast-safe.io`
+    case SUPPORTED_CHAINS.BOB:
+    case SUPPORTED_CHAINS.BOB_TESTNET:
+      return isProdEnv ? `https://gateway.safe.gobob.xyz` : `https://gateway.staging.safe.gobob.xyz`
     case SUPPORTED_CHAINS.BOBABEAM:
       return isProdEnv
         ? `https://gateway.multisig.bobabeam.boba.network`
@@ -126,7 +165,13 @@ const getGatewayBaseUrl = (chain: string) => {
     case SUPPORTED_CHAINS.IOTEX:
     case SUPPORTED_CHAINS.IOTEX_TESTNET:
       return isProdEnv ? `https://gateway.safe.iotex.io` : `https://gateway.staging.safe.iotex.io`
+    case SUPPORTED_CHAINS.KROMA:
+    case SUPPORTED_CHAINS.KROMA_SEPOLIA:
+      return isProdEnv
+        ? `https://gateway.safe.kroma.network`
+        : `https://gateway.staging.safe.kroma.network`
     case SUPPORTED_CHAINS.LINEA:
+    case SUPPORTED_CHAINS.LINEA_SEPOLIA:
     case SUPPORTED_CHAINS.LINEA_TESTNET:
       return isProdEnv
         ? `https://gateway.safe.linea.build`
@@ -166,6 +211,14 @@ const getGatewayBaseUrl = (chain: string) => {
       return isProdEnv
         ? `https://gateway.safe.scroll.xyz `
         : `https://gateway.staging.safe.scroll.xyz`
+    case SUPPORTED_CHAINS.SEI:
+    case SUPPORTED_CHAINS.SEI_DEVNET:
+      return isProdEnv
+        ? `https://gateway.sei-safe.protofire.io`
+        : `https://gateway.staging.sei-safe.protofire.io`
+    case SUPPORTED_CHAINS.TANGIBLE_REAL:
+    case SUPPORTED_CHAINS.TANGIBLE_UNREAL:
+      return isProdEnv ? `https://gateway.safe.re.al` : `https://gateway.staging.safe.re.al`
     case SUPPORTED_CHAINS.TELOS:
     case SUPPORTED_CHAINS.TELOS_TESTNET:
       return `https://gateway.safe.telos.net`
@@ -180,15 +233,40 @@ const getGatewayBaseUrl = (chain: string) => {
     case SUPPORTED_CHAINS.VELAS:
     case SUPPORTED_CHAINS.VELAS_TESTNET:
       return isProdEnv ? `https://gateway.velasafe.com` : `https://gateway.staging.velasafe.com`
+    case SUPPORTED_CHAINS.ZETACHAIN:
     case SUPPORTED_CHAINS.ZETACHAIN_TESTNET:
       return isProdEnv
         ? `https://gateway.safe.zetachain.com`
         : `https://gateway.staging.safe.zetachain.com`
+    case SUPPORTED_CHAINS.ZILLIQA_EVM:
+    case SUPPORTED_CHAINS.ZILLIQA_EVM_TESTNET:
+      return isProdEnv
+        ? `https://gateway.safe.zilliqa.com`
+        : `https://gateway.staging.safe.zilliqa.com`
     case SUPPORTED_CHAINS.ZKSYNC_ERA:
     case SUPPORTED_CHAINS.ZKSYNC_ERA_TESTNET:
       return isProdEnv
         ? `https://gateway.zksafe.protofire.io`
         : `https://gateway.staging-zksafe.protofire.io`
+    case SUPPORTED_CHAINS.CROSS_FI_TESTNET:
+      return isProdEnv
+        ? 'https://gateway.safe.crossfi.org'
+        : 'https://gateway.staging.safe.crossfi.org'
+    case SUPPORTED_CHAINS.WEMIX:
+    case SUPPORTED_CHAINS.WEMIX_TESTNET:
+      return isProdEnv ? 'https://gateway.safe.wemix.com' : 'https://gateway.staging.safe.wemix.com'
+    case SUPPORTED_CHAINS.XAI:
+    case SUPPORTED_CHAINS.XAI_TESTNET:
+      return isProdEnv
+        ? `https://gateway.safe-xai.protofire.io`
+        : `https://gateway.staging-safe-xai.protofire.io`
+    case SUPPORTED_CHAINS.MORPH_HOLESKY:
+      return isProdEnv
+        ? `https://gateway.safe.morphl2.io`
+        : `https://gateway.stg.safe.morphl2.io`
+    case SUPPORTED_CHAINS.TAIKO:
+    case SUPPORTED_CHAINS.TAIKO_HEKLA:
+      return isProdEnv ? 'https://gateway.safe.taiko.xyz' : 'https://gateway.staging.safe.taiko.xyz'
     default:
       throw new Error(
         `[getGatewayBaseUrl]: There is no gateway for ${chain}, therefore we cannot get the contract abi from it.`,
@@ -202,6 +280,10 @@ const getScanAPIBaseURL = (chain: string): undefined | { link: string; apiKey?: 
   switch (chain) {
     case SUPPORTED_CHAINS.CASCADIA_TESTNET:
       return { link: 'https://explorer.cascadia.foundation' }
+    case SUPPORTED_CHAINS.BLAST:
+      return { link: 'https://api.blastscan.io' }
+    case SUPPORTED_CHAINS.BLAST_TESTNET:
+      return { link: 'https://api-sepolia.blastscan.io' }
     case SUPPORTED_CHAINS.LINEA:
       return {
         link: 'https://api.lineascan.build',
@@ -210,6 +292,11 @@ const getScanAPIBaseURL = (chain: string): undefined | { link: string; apiKey?: 
     case SUPPORTED_CHAINS.LINEA_TESTNET:
       return {
         link: 'https://api-testnet.lineascan.build',
+        apiKey: process.env.REACT_APP_LINEASCAN_KEY,
+      }
+    case SUPPORTED_CHAINS.LINEA_SEPOLIA:
+      return {
+        link: 'https://api-sepolia.lineascan.build',
         apiKey: process.env.REACT_APP_LINEASCAN_KEY,
       }
     case SUPPORTED_CHAINS.HOLESKY:
@@ -232,8 +319,45 @@ const getScanAPIBaseURL = (chain: string): undefined | { link: string; apiKey?: 
         link: 'https://api-moonriver.moonscan.io',
         apiKey: TEMP_MOONRIVER_KEY,
       }
+    case SUPPORTED_CHAINS.IMMUTABLE:
+      return {
+        link: 'https://explorer.immutable.com',
+      }
+    case SUPPORTED_CHAINS.IMMUTABLE_TESTNET:
+      return {
+        link: 'https://explorer.testnet.immutable.com',
+      }
+    case SUPPORTED_CHAINS.ZKLINK_NOVA_GOERLI:
+      return {
+        link: 'https://goerli.explorer-api.zklink.io',
+      }
+    case SUPPORTED_CHAINS.ZKLINK_NOVA:
+      return {
+        link: 'https://explorer-api.zklink.io',
+      }
     default:
       return
+  }
+}
+
+const getBlockscoutBaseURL = (chain: string): string => {
+  switch (chain) {
+    case SUPPORTED_CHAINS.TANGIBLE_REAL:
+      return 'https://explorer.re.al'
+    case SUPPORTED_CHAINS.TANGIBLE_UNREAL:
+      return 'https://unreal.blockscout.com'
+    case SUPPORTED_CHAINS.MINT:
+      return 'https://explorer.mintchain.io'    
+    case SUPPORTED_CHAINS.BOBA:
+    case SUPPORTED_CHAINS.BOBA_BNB:
+      return 'https://bobascan.com'
+    case SUPPORTED_CHAINS.BOBA_BNB_TESTNET:
+    case SUPPORTED_CHAINS.BOBA_TESTNET:
+      return 'https://testnet.bobascan.com'
+    case SUPPORTED_CHAINS.FLOW_TESTNET:
+      return 'https://evm-testnet.flowscan.io'
+    default:
+      return `https://blockscout.com/${chain}`
   }
 }
 

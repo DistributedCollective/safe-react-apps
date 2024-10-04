@@ -28,6 +28,10 @@ export enum SUPPORTED_CHAINS {
   IOTEX = '4689',
   IOTEX_TESTNET = '4690',
   LINEA = '59144',
+<<<<<<< HEAD
+=======
+  LINEA_SEPOLIA = '59141',
+>>>>>>> 1bd868ae37dade6ea41cc3ff36f93880d7b20564
   LINEA_TESTNET = '59140',
   MANTA_PACIFIC_MAINNET = '169',
   MANTLE = '5000',
@@ -40,6 +44,10 @@ export enum SUPPORTED_CHAINS {
   NEON_EVM_TESTNET = '245022940',
   OASIS_SAPPHIRE = '23294',
   OASIS_SAPPHIRE_TESTNET = '23295',
+<<<<<<< HEAD
+=======
+  REYA = '1729',
+>>>>>>> 1bd868ae37dade6ea41cc3ff36f93880d7b20564
   RSK = '30',
   RSK_TESTNET = '31',
   SCROLL = '534352',
@@ -54,6 +62,10 @@ export enum SUPPORTED_CHAINS {
   VELAS = '106',
   VELAS_TESTNET = '111',
   ZETACHAIN_TESTNET = '7001',
+<<<<<<< HEAD
+=======
+  ZKLINK_NOVA = '810180',
+>>>>>>> 1bd868ae37dade6ea41cc3ff36f93880d7b20564
   ZKSYNC_ERA = '324',
   ZKSYNC_ERA_TESTNET = '280',
 }
@@ -102,6 +114,10 @@ const getGatewayBaseUrl = (chain: string) => {
     case SUPPORTED_CHAINS.IOTEX_TESTNET:
       return isProdEnv ? `https://gateway.safe.iotex.io` : `https://gateway.staging.safe.iotex.io`
     case SUPPORTED_CHAINS.LINEA:
+<<<<<<< HEAD
+=======
+    case SUPPORTED_CHAINS.LINEA_SEPOLIA:
+>>>>>>> 1bd868ae37dade6ea41cc3ff36f93880d7b20564
     case SUPPORTED_CHAINS.LINEA_TESTNET:
       return isProdEnv
         ? `https://gateway.safe.linea.build`
@@ -130,6 +146,13 @@ const getGatewayBaseUrl = (chain: string) => {
     case SUPPORTED_CHAINS.OASIS_SAPPHIRE:
     case SUPPORTED_CHAINS.OASIS_SAPPHIRE_TESTNET:
       return isProdEnv ? `https://gateway.safe.oasis.io` : `https://gateway.safe.stg.oasis.io`
+<<<<<<< HEAD
+=======
+    case SUPPORTED_CHAINS.REYA:
+      return isProdEnv
+        ? `https://gateway.safe.reya.network`
+        : `https://gateway.staging.safe.reya.network`
+>>>>>>> 1bd868ae37dade6ea41cc3ff36f93880d7b20564
     case SUPPORTED_CHAINS.RSK:
     case SUPPORTED_CHAINS.RSK_TESTNET:
       return isProdEnv

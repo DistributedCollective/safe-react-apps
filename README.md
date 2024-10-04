@@ -98,7 +98,7 @@ This will allow the Safe to consume these resources like so: `https://apps.gnosi
 
 ## How to Develop a third-party App
 
-Documentation about how to develop and integrate your third-party app can be found [here](https://docs.gnosis-safe.io/build/sdks/safe-apps).
+Documentation about how to develop and integrate your third-party app can be found [here](https://docs.safe.global/safe-core-aa-sdk/safe-apps).
 
 ## For developers
 
@@ -130,12 +130,12 @@ These apps are deployed in the following environments.
   | [Transaction Builder](https://safe-apps.staging.5afe.dev/tx-builder)
   | [WalletConnect](https://safe-apps.staging.5afe.dev/wallet-connect)
 
-- When the code is released: https://apps.gnosis-safe.io
+- When the code is released: https://apps-portal.safe.global
 
-  [Drain Account](https://apps.gnosis-safe.io/drain-safe)
-  | [Ramp Network](https://apps.gnosis-safe.io/ramp-network)
-  | [Transaction Builder](https://apps.gnosis-safe.io/tx-builder)
-  | [WalletConnect](https://apps.gnosis-safe.io/wallet-connect)
+  [Drain Account](https://apps-portal.safe.global/drain-safe)
+  | [Ramp Network](https://apps-portal.safe.global/ramp-network)
+  | [Transaction Builder](https://apps-portal.safe.global/tx-builder)
+  | [WalletConnect](https://apps-portal.safe.global/wallet-connect)
 
 ## Run e2e tests
 
